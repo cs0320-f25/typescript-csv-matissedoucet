@@ -58,3 +58,72 @@ test("parseCSV handles commas in double quotes", async () => {
     "doing well, could be better, who's asking?",
   ]);
 });
+
+const EMPTY_SURROUND_CSV_PATH = path.join(
+  __dirname,
+  "../data/empty-lines-surround.csv",
+);
+
+test("parseCSV empty lines surrounding data", async () => {
+  const results = await parseCSV(EMPTY_SURROUND_CSV_PATH);
+
+  expect(results).toHaveLength(2);
+  expect(results[0]).toEqual(["Luigi", "Super Smash Bros"]);
+  expect(results[1]).toEqual(["Mario", "Mario Kart 64"]);
+});
+
+const EMPTY_WITHIN_CSV_PATH = path.join(
+  __dirname,
+  "../data/empty-lines-within.csv",
+);
+
+test("parseCSV empty lines within data", async () => {
+  const results = await parseCSV(EMPTY_WITHIN_CSV_PATH);
+
+  expect(results).toHaveLength(3);
+  expect(results[0]).toEqual(["name", "shirt-size"]);
+  expect(results[1]).toEqual(["helly", "L"]);
+  expect(results[2]).toEqual(["mark s.", "XL"]);
+});
+
+const MULTI_LINE_CSV_PATH = path.join(__dirname, "../data/multi-line.csv");
+
+test("parseCSV handles multi line fields", async () => {
+  const results = await parseCSV(MULTI_LINE_CSV_PATH);
+
+  expect(results).toHaveLength(3);
+  expect(results[0]).toEqual(["name", "address", "phone number"]);
+  expect(results[1]).toEqual([
+    "Josiah Carberry",
+    "69 Brown St\nProvidence, RI 02912",
+    "401-555-1968",
+  ]);
+  expect(results[2]).toEqual([
+    "Natalie",
+    "345 E. Main St\nKier, PE 07452",
+    "800-234-3433",
+  ]);
+});
+
+const EMPTY_FIELDS_CSV_PATH = path.join(__dirname, "../data/empty-fields.csv");
+
+test("parseCSV handles empty fields", async () => {
+  const results = await parseCSV(EMPTY_FIELDS_CSV_PATH);
+
+  expect(results).toHaveLength(2);
+  expect(results[0]).toEqual(["a world to win tee", "black, white", "30"]);
+  expect(results[1]).toEqual(["watts rebellion sweatshirt", "", "20"]);
+});
+
+const ESCAPED_QUOTES_CSV_PATH = path.join(
+  __dirname,
+  "../data/escaped-quotes.csv",
+);
+
+test("parseCSV escaped quotes", async () => {
+  const results = await parseCSV(ESCAPED_QUOTES_CSV_PATH);
+
+  expect(results).toHaveLength(2);
+  expect(results[0]).toEqual(["tim berners lee", '"hello world!"']);
+  expect(results[1]).toEqual(["einstein", '"e=mc^2"']);
+});
