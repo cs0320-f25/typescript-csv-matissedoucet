@@ -127,3 +127,11 @@ test("parseCSV escaped quotes", async () => {
   expect(results[0]).toEqual(["tim berners lee", '"hello world!"']);
   expect(results[1]).toEqual(["einstein", '"e=mc^2"']);
 });
+
+const MALFORMED_CSV_PATH = path.join(__dirname, "../data/malformed.csv");
+
+test("parseCSV throws on malformed data", async () => {
+  const results = await parseCSV(MALFORMED_CSV_PATH);
+
+  expect(results).toThrow();
+});
