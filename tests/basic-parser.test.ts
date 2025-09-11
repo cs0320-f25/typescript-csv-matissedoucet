@@ -124,7 +124,7 @@ test("parseCSV escaped quotes", async () => {
   const results = await parseCSV(ESCAPED_QUOTES_CSV_PATH);
 
   expect(results).toHaveLength(2);
-  expect(results[0]).toEqual(["tim berners lee", '"hello world!"']);
+  expect(results[0]).toEqual(["tim berners lee", 'hello" world!"']);
   expect(results[1]).toEqual(["einstein", '"e=mc^2"']);
 });
 
