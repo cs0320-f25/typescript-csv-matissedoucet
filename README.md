@@ -1,12 +1,12 @@
 # Sprint 1: TypeScript CSV
 
-### Task C: Proposing Enhancement
+### Task B: Proposing Enhancement
 
 - #### Step 1: Brainstorm on your own.
 
 - #### Step 2: Use an LLM to help expand your perspective.
 
-- #### Step 3: use an LLM to help expand your perspective.
+- #### Step 3: Propose enhancements in your project README file
 
     Include a list of the top 4 enhancements or edge cases you think are most valuable to explore in the next week’s sprint. Label them clearly by category (extensibility vs. functionality), and include whether they came from you, the LLM, or both. Describe these using the User Story format—see below for a definition.
 
