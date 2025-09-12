@@ -1,8 +1,8 @@
 # Sprint 1: TypeScript CSV
 
-### Task B: Proposing Enhancement
+## Task B: Proposing Enhancement
 
-- #### Step 1: Brainstorm on your own.
+### Step 1: Brainstorm on your own.
 
 Functionality
 
@@ -21,9 +21,9 @@ Extensibility
 - Option to not trim spaces
 - Option to use custom string delimiter other than double quotes
 
-- #### Step 2: Use an LLM to help expand your perspective.
+### Step 2: Use an LLM to help expand your perspective.
 
-Deepseek offered the following suggestions
+Deepseek offered the following suggestions:
 
 Functionality
 
@@ -71,11 +71,11 @@ Differed in
 - Different encodings other than UTF-8
 - Options for handling header duplicates
 
-- #### Step 3: Propose enhancements in your project README file
+### Step 3: Propose enhancements in your project README file
 
-    Include a list of the top 4 enhancements or edge cases you think are most valuable to explore in the next week’s sprint. Label them clearly by category (extensibility vs. functionality), and include whether they came from you, the LLM, or both. Describe these using the User Story format—see below for a definition.
+> Include a list of the top 4 enhancements or edge cases you think are most valuable to explore in the next week’s sprint. Label them clearly by category (extensibility vs. functionality), and include whether they came from you, the LLM, or both. Describe these using the User Story format—see below for a definition.
 
-Edge cases
+#### Edge cases
 
 As a developer using this CSV parser, I can see whether my CSV file is formatted correctly so that I don't end up with unexpected results.
 - If the data is formatted properly, the parser should return the expected result
@@ -84,8 +84,7 @@ As a developer using this CSV parser, I can see whether my CSV file is formatted
 As a user of this library, I can parse complex inputs and expect them to work so I can represent the data in the way I want.
 - The parser should have proper support for complex data inputs, such as quotes, commas, and line breaks in fields.
 
-
-Enhancements
+#### Enhancements
 
 As a developer using this library, I can process and validate my data beyond having an array of strings so I can start using the data I import in my code without having to manually cast types.
 - The parser should make it easy to validate data in columns, such as emails, numbers, dates, etc.
@@ -94,19 +93,24 @@ As a developer using this library, I can process and validate my data beyond hav
 As a user of this CSV parser, I can easily pass in the specific options I need so I can configure the input and outputs the way I want with ease.
 - The parser should have sensible defaults and allow the user to change the specific options they want
 
-    Include your notes from above: what were your initial ideas, what did the LLM suggest, and how did the results differ by prompt? What resonated with you, and what didn’t? (3-5 sentences.) 
+> Include your notes from above: what were your initial ideas, what did the LLM suggest, and how did the results differ by prompt? What resonated with you, and what didn’t? (3-5 sentences.) 
 
 I think most of these are solid suggestions. I'd say there is solid overlap in terms of functionality and edge cases we came up with, though filled in some important edge cases, such as different line break format. Since it has a lot of CSV parsers in its dataset, it came up with some solid suggestions of nice features to improve the developer experience. Most notably use of an options object allowing flexibility in how the dev should specify its options, and offering flexibility in input and output methods, such as using streams or csv data in a string for input. One suggestion which I'm not sure about implementing is the use of a lax vs strict mode, which allows parsing to continue even after detecting malformed data.
 
-### Design Choices
+## Design Choices
 
-### 1340 Supplement
+## 1340 Supplement
 
-- #### 1. Correctness
+## Reflection
 
-- #### 2. Random, On-Demand Generation
+### 1. Correctness
 
-- #### 3. Overall experience, Bugs encountered and resolved
+### 2. Random, On-Demand Generation
+
+### 3. Overall experience, Bugs encountered and resolved
+
+### Hand-in
+
 #### Errors/Bugs:
 #### Tests:
 #### How To…
