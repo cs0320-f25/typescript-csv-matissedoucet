@@ -16,6 +16,15 @@ test("parseCSV yields arrays", async () => {
   expect(results[4]).toEqual(["Nim", "22"]);
 });
 
+test("parseCSV throws on invalid validation", async () => {
+  const results = await parseCSV(
+    PEOPLE_CSV_PATH,
+    z.tuple([z.string(), z.coerce.number()]),
+  );
+
+  expect(results).toBeInstanceOf(ZodError);
+});
+
 test("parseCSV yields only arrays", async () => {
   const results = await parseCSV(PEOPLE_CSV_PATH);
   if (results instanceof ZodError) fail();
@@ -145,4 +154,52 @@ test("parseCSV throws on malformed data", async () => {
   const results = await parseCSV(MALFORMED_CSV_PATH);
 
   expect(results).toThrow();
+});
+
+const ZOD_SIMPLE_INPUT_CSV_PATH = path.join(
+  __dirname,
+  "../data/zod-simple-input.csv",
+);
+
+test("parseCSV can handle simple structured input", async () => {
+  const results = await parseCSV(
+    ZOD_SIMPLE_INPUT_CSV_PATH,
+    z.tuple([z.iso.date(), z.string(), z.coerce.number(), z.email()]),
+  );
+
+  if (results instanceof ZodError) fail();
+  expect(results).toHaveLength(3);
+  expect(results[0]).toEqual([
+    "2023-03-01",
+    "Ally Doe",
+    34,
+    "doe.ally@gmail.com",
+  ]);
+  expect(results[1]).toEqual([
+    "2021-10-07",
+    "Bob Smith",
+    23,
+    "bsmith001@inst.edu",
+  ]);
+  expect(results[2]).toEqual([
+    "2024-05-30",
+    "Catherine Grainger",
+    28,
+    "catgrainger@yahoo.com",
+  ]);
+});
+
+test("parseCSV gives error on wrong number of cols", async () => {
+  const results = await parseCSV(
+    ZOD_SIMPLE_INPUT_CSV_PATH,
+    z.tuple([
+      z.iso.date(),
+      z.string(),
+      z.coerce.number(),
+      z.email(),
+      z.string(),
+    ]),
+  );
+
+  expect(results).toBeInstanceOf(ZodError);
 });
