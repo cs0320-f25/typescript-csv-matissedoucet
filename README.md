@@ -99,24 +99,79 @@ I think most of these are solid suggestions. I'd say there is solid overlap in t
 
 ## Design Choices
 
+In case of errors, I chose to return the existing `ZodError` type, rather than try to make my own error type, since this is the only kind of error that can really be raised during this sprint. However, in the future, it might make more sense to create a custom error type to catch malformed inputs such as too many columns in a row, or escaping double-quotes improperly.
+
 ## 1340 Supplement
 
 ## Reflection
 
 ### 1. Correctness
 
+> What makes a CSV parser “correct”? We're not asking for additional input-output pairs here, but fairly precise, natural-language descriptions. Put another way, what kinds of general properties should your tests be checking about your CSV parser?
+
+- Rows are separated by a line break, and columns within a row separated by commas
+- All the rows have the same amount of columns
+    - There should be a consistent amount of commas not within double quotes
+- All double quotes should have matching, non-escaped double quotes
+- Escaped double quotes (two consecutive double quotes) should be contained in another set of double quotes
+
 ### 2. Random, On-Demand Generation
 
+> Suppose we gave you a function that randomly produced CSV data on demand. You could then call this class from your testing code. How might you use this source of random data to expand the power of your testing?
+
+I could use this source of random data to ensure that my CSV parser works on a wide variety of correct CSV files. Additionally, I could manipulate this data to produce different and interesting kinds of malformed data to see if my parser can catch these errors.
+
 ### 3. Overall experience, Bugs encountered and resolved
+
+> In what ways did this sprint differ from prior programming assignments you’ve done? Did anything surprise you? Did you encounter any bugs during your work on this sprint? If yes, what were they and how did you fix them? If not, how do you think that you managed to avoid them? 
+
+More so than other programming assignments, this sprint involved trying to tease out what the user of this library would want in a parser, and what potential enhancements and edge cases they would come across. I did encounter some bugs, mainly around edge cases which the parser doesn't handle yet. I haven't fixed most of them yet since that comes in the next sprint, but I was able to fix errors concerning validation.
 
 ### Hand-in
 
 #### Errors/Bugs:
+
+- Doesn't support multi-line correctly (try parsing `./data/multi-line.csv`)
+- Doesn't throw or catch on uneven columns (`./data/malformed.csv`)
+- Doesn't handle escaped quotes properly (`./data/escaped-quotes.csv`)
+
 #### Tests:
+
+- Types are validated correctly on Zod types
+- Multi line fields are handled correctly
+- Commas inside double quotes aren't treated as different columns
+- Two consecutive double quotes treated as an escaped double quote
+
 #### How To…
+
+Install npm packages
+
+```bash
+> npm install
+```
+
+Run sample parser use
+
+```bash
+> npm run run
+```
+
+Run tests
+
+```bash
+> npm test
+```
 
 #### Team members and contributions (include cs logins):
 
 #### Collaborators (cslogins of anyone you worked with on this project and/or generative AI):
+
+Deepseek AI helped generate some ideas for edge cases and enhancements, and helped get me familiar with Typescript syntax.
+
 #### Total estimated time it took to complete project:
-#### Link to GitHub Repo:  
+
+15 hours
+
+#### Link to GitHub Repo:
+
+https://github.com/cs0320-f25/typescript-csv-matissedoucet
