@@ -2,10 +2,6 @@ import * as fs from "fs";
 import * as readline from "readline";
 import { z } from "zod";
 
-interface ParserError {
-  error: "something went wrong";
-}
-
 /**
  * This is a JSDoc comment. Similar to JavaDoc, it documents a public-facing
  * function for others to use. Most modern editors will show the comment when
