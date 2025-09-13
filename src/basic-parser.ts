@@ -17,8 +17,8 @@ interface ParserError {
  * You shouldn't need to alter them.
  *
  * @param path The path to the file being loaded.
- * @param schema The zod schema used to validate a row
- * @returns a "promise" to produce a 2-d array of cell values
+ * @param [schema] The zod schema used to validate a row
+ * @returns a "promise" to produce either a 2-d array of cell values, an array of validated data, or a validation error
  */
 export async function parseCSV<T>(
   path: string,
